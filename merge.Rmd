@@ -1,0 +1,24 @@
+---
+title: "Merge peptide and protein data"
+author: "Colin Wu and Daniel Montemayor"
+date: "8/6/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##########
+ToDO: Colin we need to follow these steps to do the thing. ok
+#####
+
+# 1) upload 3 files
+
+# 2) Combine peptide and protein files
+
+# 3) get 1st ID from combo file and find corresponding ID in the import file
+
+# 4) copy peptide and protein data values and put in the import file
+
+# 5) save the import file.
