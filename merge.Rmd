@@ -5,20 +5,37 @@ date: "8/6/2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ##########
 ToDO: Colin we need to follow these steps to do the thing. ok
 #####
 
 # 1) upload 3 files
+```{r}
+# Read CSV into R
+Peptides <- read.csv(file="anything.csv", header=TRUE, sep=",")
+Proteins <- read.csv(file="anything2.csv", header=TRUE, sep=",")
+Import <- read.csv(file="import.csv", header=TRUE, sep=",")
+```
+
 
 # 2) Combine peptide and protein files
+```{r}
+  merged.data <- merge(Peptides, Proteins, by="record_id")
 
-# 3) get 1st ID from combo file and find corresponding ID in the import file
 
-# 4) copy peptide and protein data values and put in the import file
+```
+# 3) make column names the same
+```{r}
+x <- names(Import)
+x <- substring(x, 3)
+x <- substring(x,1,nchar(x)-6)
+x <- toupper(x)
+names(Import)<-x
+names(Import)[1]<-"record_id"
+
+
+```
+# 4) merge import and merged.data
 
 # 5) save the import file.
