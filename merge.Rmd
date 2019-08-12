@@ -6,10 +6,6 @@ output: html_document
 ---
 
 
-##########
-ToDO: Colin we need to follow these steps to do the thing. ok
-#####
-
 # 1) upload 3 files
 ```{r}
 # Read CSV into R
@@ -34,8 +30,63 @@ x <- toupper(x)
 names(Import)<-x
 names(Import)[1]<-"record_id"
 
+```
+make merged data names the same as import
+```{r}
+x <- names(merged.data)
+x <- substring(x,1,nchar(x)-9)
+x <- gsub('\\.', '_', x)
+names(merged.data)<-x
+names(merged.data)[1]<-"record_id"
+```
+
+test column names are the same
+```{r}
+tf <- names(Import)%in%names(merged.data)
+
+names(Import)[!tf]
+#names(merged.data)[!tf]
+```
+
+
+
+# 4) merge import and merged.data
+```{r}
+
+ia <- match(merged.data$record_id,Import$record_id)
+ja <- match(names(merged.data),names(Import))
+
+#loop over rows in merged.data
+#for(ib in 1:nrow(merged.data) ){
+for(ib in 1:3 ){
+  print("++++++++++")
+  print(ib)
+  print(merged.data$record_id[ib])
+
+  #loop over columns in merged.data
+  #for(jb in 1:ncol(merged.data)){
+  for(jb in 1:3){
+
+    print("----------")
+    print(jb)
+    print(merged.data[ib,jb])
+    print(Import[ia[ib],ja[jb]])
+
+
+    Import[ia[ib],ja[jb]]<-merged.data[ib,jb]
+  }
+}
+
+
 
 ```
-# 4) merge import and merged.data
 
+```{r}
+#finaldata <- merge(Import,merged.data, by=names(merged.data),
+
+
+```
 # 5) save the import file.
+```{r}
+#write.csv(finaldata,file="finaldata.csv")
+```
